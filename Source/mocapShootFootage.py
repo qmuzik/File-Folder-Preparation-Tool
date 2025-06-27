@@ -17,6 +17,7 @@ def mocapShootFootageFolderStructure():
     # Mocap Shoot Footage Folder Names
     foldersMocapShootFootage = ["Edited", "Misc", "Raw", "Reel"]
 
+    # Loop to ensure the user selects a valid Mocap System
     while True:
         
         # Ask the user for the type of Mocap System they are using 
@@ -30,7 +31,8 @@ def mocapShootFootageFolderStructure():
         else:
             print("Invalid option selected. Please select a valid Mocap System (1. OptiTrack, 2. Vicon, or 3. MoveOne). \n")
             continue
-
+    
+    # Loop to ensure the user provides a unique folder name and to handle existing directories
     while True:
         
         # If the user selects OptiTrack then

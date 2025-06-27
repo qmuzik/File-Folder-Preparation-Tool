@@ -15,18 +15,46 @@ def blankTemplateFolderStructure():
     # Folder List for the Blank Template
     foldersBlankTemplate = ["Folder1", "Folder2", "Folder3", "Folder4"]
 
+    # Loop to create a new file structure
     while True:
 
         # Ask the user for the name of the Project Root Folder
         newFileStructureName = input("Please enter the name of the new file structure: \n")
 
         # Ask the user for the number of folders to create
-        numFolders = int(input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n"))
+        numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+
+        # Validate the number of folders input
+        while True:
+
+            # Check to see if the user entered a number and not a string
+            if numFolders.isdigit():
+
+                # Convert the input to an integer
+                numFolders = int(numFolders)
+
+                # Check if the number of folders is zero or greater
+                if numFolders >= 0:
+                    break
+
+                # If the user entered a negative number, prompt them again
+                else:
+                    print("Invalid input. Please enter a valid number (0 or greater).")
+                    numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+                    continue
+
+            # If the user entered a string, prompt them again
+            else: 
+                print("Invalid input. Please enter a valid number (0 or greater).")
+                numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+                continue
 
         # Ask the user if the need a date in the file structure name
         dateNeeded = input("Do you need a date in the file structure name? (Y/N) \n")
 
+        # Validate the dateNeeded input
         while True:
+
             # If the user needs a date in the file structure name, format it accordingly
             if dateNeeded == 'Y' or dateNeeded == 'y':
                 # Datetime Variable with custom formatting: (YYYY_MM_DD)
@@ -54,7 +82,8 @@ def blankTemplateFolderStructure():
         if os.path.exists(newFileDirectory):
             print("The file structure " + newFileStructureName + " already exists. Please choose a different name. \n")
             continue
-
+        
+        # If the directory does not exist, create it
         else:
             # Create the new root file structure
             os.mkdir(newFileDirectory)
@@ -82,5 +111,3 @@ def blankTemplateFolderStructure():
 
             # Exit the loop after successful creation
             break
-
-        

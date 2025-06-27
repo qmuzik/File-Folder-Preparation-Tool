@@ -23,6 +23,7 @@ def createCanonR8FolderStructure():
 
     # Loop to ensure the user provides a unique folder name and to handle existing directories
     while True:
+
         # Ask the user for the name of the Root Folder
         newFileStructureName = input("Please enter the name of the new file structure: \n")
 
@@ -39,6 +40,7 @@ def createCanonR8FolderStructure():
         
         # If it does not exist, create the new root directory
         else:   
+            
             # Create the new root file structure
             os.mkdir(newFileDirectory)
 

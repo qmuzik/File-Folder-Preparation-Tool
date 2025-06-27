@@ -37,7 +37,9 @@ def createGoProFolderStructure():
             print("The file structure " + newFileStructureName + " already exists. Please choose a different name. \n")
             continue
 
+        # If it does not exist, create the new root directory
         else:
+            
             # Create the new root file structure
             os.mkdir(newFileDirectory)
 

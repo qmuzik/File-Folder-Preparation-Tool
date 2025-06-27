@@ -14,6 +14,7 @@ if __name__ == '__main__':
     # Script runs the File Folder Preparation Tool
     fileFolderPreparation.FileFolderPreparation()
 
+# Loop to ask the user if they want to create another file structure
     while True:
 
         # Ask the user if they need to create another file structure

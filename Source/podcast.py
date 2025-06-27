@@ -22,6 +22,7 @@ def createPodcastFolderStructure():
 
     # Loop to ensure the user provides a unique folder name and to handle existing directories
     while True:
+        
         # Ask the user for the name of the Project Root Folder
         newFileStructureName = input("Please enter the name of the new file structure: \n")
 

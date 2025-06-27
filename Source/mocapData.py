@@ -51,6 +51,7 @@ def mocapDataFolderStructure():
     
             # If it does not exist, create the new root directory
             else:
+                
                 # Create the new root file structure
                 os.mkdir(newFileDirectory)
 
