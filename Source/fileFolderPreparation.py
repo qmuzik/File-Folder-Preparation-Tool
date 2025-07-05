@@ -9,9 +9,6 @@ import canonr8Import, goProImport, event, podcast, statAnalysis, mocapData, moca
 
 def FileFolderPreparation():
 
-    # Welcome the user to the script and its purpose
-    print("File Folder Preparation Tool. SCUBA-Q Multimedia 2025. \n")
-
     # Loop for continuous execution 
     while True:
 
@@ -65,10 +62,10 @@ def FileFolderPreparation():
 
         # Exit
         elif fileStructureType == "10" or fileStructureType == 'Exit' or fileStructureType == 'exit':
-            print("Exiting the File Folder Preparation Tool. Goodbye! \n" )
+            print("\nExiting the Project File Folder Preparation Tool. Goodbye! \n" )
             exit()
 
         # Invalid Input
         else:
-            print("Invalid input. Please enter a valid option. \n")
+            print("\nInvalid input. Please enter a valid option. \n")
             continue

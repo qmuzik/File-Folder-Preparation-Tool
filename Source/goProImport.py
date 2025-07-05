@@ -24,7 +24,7 @@ def createGoProFolderStructure():
     while True:
 
         # Ask the user for the name of the Project Root Folder
-        newFileStructureName = input("Please enter the name of the new file structure: \n")
+        newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
 
         # Add the current date to the new file structure name
         newFileStructureName = newFileStructureName + " " + currentDate
@@ -34,7 +34,7 @@ def createGoProFolderStructure():
 
         # Check if the directory already exists
         if os.path.exists(newFileDirectory):
-            print("The file structure " + newFileStructureName + " already exists. Please choose a different name. \n")
+            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
             continue
 
         # If it does not exist, create the new root directory
@@ -48,8 +48,8 @@ def createGoProFolderStructure():
                 os.mkdir(os.path.join(newFileDirectory, items))
 
             # Inform the user that the file structure has been created
-            print("File Structure " + newFileStructureName + " has been Created Successfully! \n")
-            print("Location: " + newFileDirectory + "\n")
+            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+            print("\nLocation: " + newFileDirectory)
 
             # Exit the loop after successful creation
             break

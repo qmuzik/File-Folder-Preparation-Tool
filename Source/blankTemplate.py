@@ -1,6 +1,6 @@
 """
 - File Folder Preparation Tool: Blank Template
-- Creates a file/folder structure for a Blank Project Template
+- Creates a file/folder structure for a Blank Project Template which the user can customize for project requirements
 - By Quincy Muzik 5/22/2025
 """
 
@@ -19,10 +19,10 @@ def blankTemplateFolderStructure():
     while True:
 
         # Ask the user for the name of the Project Root Folder
-        newFileStructureName = input("Please enter the name of the new file structure: \n")
+        newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
 
         # Ask the user for the number of folders to create
-        numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+        numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
 
         # Validate the number of folders input
         while True:
@@ -39,18 +39,18 @@ def blankTemplateFolderStructure():
 
                 # If the user entered a negative number, prompt them again
                 else:
-                    print("Invalid input. Please enter a valid number (0 or greater).")
-                    numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+                    print("\nInvalid input. Please enter a valid number (0 or greater).")
+                    numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
                     continue
 
             # If the user entered a string, prompt them again
             else: 
-                print("Invalid input. Please enter a valid number (0 or greater).")
-                numFolders = input("How many folders would you like to create in the " + newFileStructureName + " file structure? \n")
+                print("\nInvalid input. Please enter a valid number (0 or greater).")
+                numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
                 continue
 
         # Ask the user if the need a date in the file structure name
-        dateNeeded = input("Do you need a date in the file structure name? (Y/N) \n")
+        dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
 
         # Validate the dateNeeded input
         while True:
@@ -71,8 +71,8 @@ def blankTemplateFolderStructure():
 
             # If the user enters an invalid input, prompt them again
             else:
-                print("Invalid input. Please enter 'Y' or 'N'.")
-                dateNeeded = input("Do you need a date in the file structure name? (Y/N) \n")
+                print("\nInvalid input. Please enter 'Y' or 'N'.")
+                dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
                 continue
 
         # Select the file path for QM Projects Drive
@@ -80,7 +80,7 @@ def blankTemplateFolderStructure():
 
         # Check if the directory already exists
         if os.path.exists(newFileDirectory):
-            print("The file structure " + newFileStructureName + " already exists. Please choose a different name. \n")
+            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
             continue
         
         # If the directory does not exist, create it
@@ -97,17 +97,17 @@ def blankTemplateFolderStructure():
 
             # If the user specified zero folders, inform them
             elif numFolders == 0:
-                print("Zero folders will be created. \n")
+                print("\nZero folders will be created.")
                     
             # If no specific number is given, create the default blank template folders
             else:  
-                print("No specific number of folders provided. Creating default blank template folders. \n")
+                print("\nNo specific number of folders provided. Creating default blank template folders.")
                 for items in foldersBlankTemplate:
                     os.mkdir(os.path.join(newFileDirectory, items))
 
             # Inform the user that the file structure has been created
-            print("File Structure " + newFileStructureName + " has been Created Successfully! \n")
-            print("Location: " + newFileDirectory + "\n")
+            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+            print("\nLocation: " + newFileDirectory)
 
             # Exit the loop after successful creation
             break

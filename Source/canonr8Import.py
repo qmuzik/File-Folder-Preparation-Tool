@@ -1,6 +1,6 @@
 """
 - File Folder Preparation Tool: Canon R8 Import
-- This script is designed to create a file/folder structure for the Canon R8 camera
+- This script is designed to create a file/folder structure for the Canon R8 camera photography album
 - By Quincy Muzik 5/21/2025
 """
 
@@ -25,7 +25,7 @@ def createCanonR8FolderStructure():
     while True:
 
         # Ask the user for the name of the Root Folder
-        newFileStructureName = input("Please enter the name of the new file structure: \n")
+        newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
 
         # Add the current date to the new file structure name
         newFileStructureName = currentDate + " " + newFileStructureName
@@ -35,7 +35,7 @@ def createCanonR8FolderStructure():
 
         # Check if the root directory already exists
         if os.path.exists(newFileDirectory):
-            print("The file structure " + newFileStructureName + " already exists. Please choose a different name. \n")
+            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
             continue
         
         # If it does not exist, create the new root directory
@@ -58,8 +58,8 @@ def createCanonR8FolderStructure():
                 os.mkdir(os.path.join(nonWatermarkedFolderPath,items))
 
             # Inform the user that the file structure has been created
-            print("File Structure " + newFileStructureName + " has been Created Successfully! \n")
-            print("Location: " + newFileDirectory + "\n")
+            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+            print("\nLocation: " + newFileDirectory)
 
             # Exit the loop after successful creation
             break 
