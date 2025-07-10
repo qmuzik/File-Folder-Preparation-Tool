@@ -15,6 +15,9 @@ def FileFolderPreparation():
      # Ask the user what is the user creating a file/folder structure for
         fileStructureType = input("What do you need a new file structure created for? Please enter one of the following options: \n 1. Canon R8 Import \n 2. Go Pro Import \n 3. Event \n 4. Podcast \n 5. Stat Analysis \n 6. Mocap Data \n 7. Mocap Shoot Footage \n 8. Python Tool \n 9. Blank Template \n 10. Exit \n")
 
+        # Remove any leading or trailing whitespace
+        fileStructureType = fileStructureType.strip()
+
         # Canon R8 Import
         if fileStructureType == "1" or fileStructureType == 'Canon R8 Import' or fileStructureType == 'canon r8 import' or fileStructureType == 'Canon R8' or fileStructureType == 'canon r8':    
             canonr8Import.createCanonR8FolderStructure()

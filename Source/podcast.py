@@ -20,34 +20,45 @@ def createPodcastFolderStructure():
     format = "%B %Y"
     currentDate = datetime.datetime.now().strftime(format)
 
-    # Loop to ensure the user provides a unique folder name and to handle existing directories
-    while True:
-        
-        # Ask the user for the name of the Project Root Folder
-        newFileStructureName = input("\nPlease enter the name of the new file structure: \n")
+    # Check if the QM Projects Drive exists
+    if not os.path.exists(podcastFilePath):
+        print("\nThe file path " + podcastFilePath + " does not exist. Please check the path and try again.")
+        return
+    
+    # If the QM Projects Drive exists, ask the user if they want to create a new file structure
+    else:
 
-        # Add the current date to the new file structure name
-        newFileStructureName = newFileStructureName + " " + currentDate
+        # Loop to ensure the user provides a unique folder name and to handle existing directories
+        while True:
+            
+            # Ask the user for the name of the Project Root Folder
+            newFileStructureName = input("\nPlease enter the name of the new file structure: \n")
 
-        # Select the file path for QM Projects In Depth with SCUBA Q Multimedia Podcast folder
-        newFileDirectory = os.path.join(podcastFilePath, newFileStructureName)
+            # Remove any leading or trailing whitespace
+            newFileStructureName = newFileStructureName.strip()  
 
-        # Check if the directory already exists
-        if os.path.exists(newFileDirectory):
-            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
-            continue  
-        
-        else:
-            # Create the new root file structure
-            os.mkdir(newFileDirectory)
+            # Add the current date to the new file structure name
+            newFileStructureName = newFileStructureName + " " + currentDate
 
-            # Create the following folders in the Root Folder (Finished Podcast Edit, Original Podcast Recording, Notes, and Script):
-            for items in foldersPodcast:
-                os.mkdir(os.path.join(newFileDirectory, items))
+            # Select the file path for QM Projects In Depth with SCUBA Q Multimedia Podcast folder
+            newFileDirectory = os.path.join(podcastFilePath, newFileStructureName)
 
-            # Inform the user that the file structure has been created
-            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
-            print("\nLocation: " + newFileDirectory)
+            # Check if the directory already exists
+            if os.path.exists(newFileDirectory):
+                print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
+                continue  
+            
+            else:
+                # Create the new root file structure
+                os.mkdir(newFileDirectory)
 
-            # Exit the loop after successful creation
-            break
+                # Create the following folders in the Root Folder (Finished Podcast Edit, Original Podcast Recording, Notes, and Script):
+                for items in foldersPodcast:
+                    os.mkdir(os.path.join(newFileDirectory, items))
+
+                # Inform the user that the file structure has been created
+                print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+                print("\nLocation: " + newFileDirectory)
+
+                # Exit the loop after successful creation
+                break

@@ -11,7 +11,7 @@ import datetime
 def createGoProFolderStructure():
 
     # General File Path
-    generalFilePath = "J:\Videography\GoPro Footage"
+    goProFilePath = "J:\Videography\GoPro Footage"
 
     # GoPro Camera Folders Names
     foldersGoProCamera = ["Footage", "Reel", "Photos", "Thumbnails"]
@@ -20,36 +20,47 @@ def createGoProFolderStructure():
     format = "%B %Y"
     currentDate = datetime.datetime.now().strftime(format)
 
-    # Loop to ensure the user provides a unique folder name and to handle existing directories
-    while True:
+    # Check if the QM Projects Drive exists
+    if not os.path.exists(goProFilePath):
+        print("\nThe file path " + goProFilePath + " does not exist. Please check the path and try again.")
+        return
+    
+    # If the QM Projects Drive exists, ask the user if they want to create a new file structure
+    else:
 
-        # Ask the user for the name of the Project Root Folder
-        newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
+        # Loop to ensure the user provides a unique folder name and to handle existing directories
+        while True:
 
-        # Add the current date to the new file structure name
-        newFileStructureName = newFileStructureName + " " + currentDate
+            # Ask the user for the name of the Project Root Folder
+            newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
 
-        # Select the file path for QM Projects Drive 
-        newFileDirectory = os.path.join(generalFilePath, newFileStructureName)
+            # Remove any leading or trailing whitespace
+            newFileStructureName = newFileStructureName.strip()
 
-        # Check if the directory already exists
-        if os.path.exists(newFileDirectory):
-            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
-            continue
+            # Add the current date to the new file structure name
+            newFileStructureName = newFileStructureName + " " + currentDate
 
-        # If it does not exist, create the new root directory
-        else:
-            
-            # Create the new root file structure
-            os.mkdir(newFileDirectory)
+            # Select the file path for QM Projects Drive 
+            newFileDirectory = os.path.join(goProFilePath, newFileStructureName)
 
-            # Create the following folders in the Root Folder (Footage, Reel, Photos, and Thumbnails):
-            for items in foldersGoProCamera:
-                os.mkdir(os.path.join(newFileDirectory, items))
+            # Check if the directory already exists
+            if os.path.exists(newFileDirectory):
+                print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
+                continue
 
-            # Inform the user that the file structure has been created
-            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
-            print("\nLocation: " + newFileDirectory)
+            # If it does not exist, create the new root directory
+            else:
+                
+                # Create the new root file structure
+                os.mkdir(newFileDirectory)
 
-            # Exit the loop after successful creation
-            break
+                # Create the following folders in the Root Folder (Footage, Reel, Photos, and Thumbnails):
+                for items in foldersGoProCamera:
+                    os.mkdir(os.path.join(newFileDirectory, items))
+
+                # Inform the user that the file structure has been created
+                print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+                print("\nLocation: " + newFileDirectory)
+
+                # Exit the loop after successful creation
+                break

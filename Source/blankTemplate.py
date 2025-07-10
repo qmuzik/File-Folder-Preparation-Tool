@@ -9,105 +9,118 @@ import os
 import datetime
 
 def blankTemplateFolderStructure():
+
     # Path to the QM Projects Drive
     mainDrivePath = "J:"
 
-    # Folder List for the Blank Template
-    foldersBlankTemplate = ["Folder1", "Folder2", "Folder3", "Folder4"]
+    # Check if the QM Projects Drive exists
+    if not os.path.exists(mainDrivePath):
+        print("\nThe file path " + mainDrivePath + " does not exist. Please check the path and try again.")
+        return
+    
+    # If the QM Projects Drive exists, ask the user if they want to create a new file structure
+    else:
 
-    # Loop to create a new file structure
-    while True:
-
-        # Ask the user for the name of the Project Root Folder
-        newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
-
-        # Ask the user for the number of folders to create
-        numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
-
-        # Validate the number of folders input
+        # Loop to create a new file structure
         while True:
 
-            # Check to see if the user entered a number and not a string
-            if numFolders.isdigit():
+            # Ask the user for the name of the Project Root Folder
+            newFileStructureName = input("\nPlease enter the name of the new file structure:\n")
 
-                # Convert the input to an integer
-                numFolders = int(numFolders)
+            # Remove any leading or trailing whitespace
+            newFileStructureName = newFileStructureName.strip()
 
-                # Check if the number of folders is zero or greater
-                if numFolders >= 0:
-                    break
+            # Ask the user for the number of folders to create
+            numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
 
-                # If the user entered a negative number, prompt them again
-                else:
+            # Remove any leading or trailing whitespace
+            numFolders = numFolders.strip()
+
+            # Validate the number of folders input
+            while True:
+
+                # Check to see if the user entered a number and not a string
+                if numFolders.isdigit():
+
+                    # Convert the input to an integer
+                    numFolders = int(numFolders)
+
+                    # Check if the number of folders is zero or greater
+                    if numFolders >= 0:
+                        break
+
+                    # If the user entered a negative number, prompt them again
+                    else:
+                        print("\nInvalid input. Please enter a valid number (0 or greater).")
+                        numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
+                        numFolders = numFolders.strip()
+                        continue
+
+                # If the user entered a string, prompt them again
+                else: 
                     print("\nInvalid input. Please enter a valid number (0 or greater).")
                     numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
+                    numFolders = numFolders.strip()
                     continue
 
-            # If the user entered a string, prompt them again
-            else: 
-                print("\nInvalid input. Please enter a valid number (0 or greater).")
-                numFolders = input("\nHow many folders would you like to create in the " + newFileStructureName + " file structure?\n")
+            # Ask the user if the need a date in the file structure name
+            dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
+
+            # Remove any leading or trailing whitespace
+            dateNeeded = dateNeeded.strip()
+
+            # Validate the dateNeeded input
+            while True:
+
+                # If the user needs a date in the file structure name, format it accordingly
+                if dateNeeded == 'Y' or dateNeeded == 'y':
+                    # Datetime Variable with custom formatting: (YYYY_MM_DD)
+                    format = "%Y_%m_%d"
+                    currentDate = datetime.datetime.now().strftime(format)
+                    newFileStructureName =  newFileStructureName + " " + currentDate 
+                    break
+            
+                # If the user does not need a date, keep the file structure name as is
+                elif dateNeeded == 'N' or dateNeeded == 'n':
+                    # If no date is needed, do not add it to the file structure name
+                    newFileStructureName = newFileStructureName
+                    break
+
+                # If the user enters an invalid input, prompt them again
+                else:
+                    print("\nInvalid input. Please enter 'Y' or 'N'.")
+                    dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
+                    dateNeeded = dateNeeded.strip()
+                    continue
+
+            # Select the file path for QM Projects Drive
+            newFileDirectory = os.path.join(mainDrivePath, newFileStructureName)
+
+            # Check if the directory already exists
+            if os.path.exists(newFileDirectory):
+                print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
                 continue
-
-        # Ask the user if the need a date in the file structure name
-        dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
-
-        # Validate the dateNeeded input
-        while True:
-
-            # If the user needs a date in the file structure name, format it accordingly
-            if dateNeeded == 'Y' or dateNeeded == 'y':
-                # Datetime Variable with custom formatting: (YYYY_MM_DD)
-                format = "%Y_%m_%d"
-                currentDate = datetime.datetime.now().strftime(format)
-                newFileStructureName =  newFileStructureName + " " + currentDate 
-                break
-        
-            # If the user does not need a date, keep the file structure name as is
-            elif dateNeeded == 'N' or dateNeeded == 'n':
-                # If no date is needed, do not add it to the file structure name
-                newFileStructureName = newFileStructureName
-                break
-
-            # If the user enters an invalid input, prompt them again
+            
+            # If the directory does not exist, create it
             else:
-                print("\nInvalid input. Please enter 'Y' or 'N'.")
-                dateNeeded = input("\nDo you need a date in the file structure name? (Y/N)\n")
-                continue
+                
+                # Create the new root file structure
+                os.mkdir(newFileDirectory)
 
-        # Select the file path for QM Projects Drive
-        newFileDirectory = os.path.join(mainDrivePath, newFileStructureName)
+                # If the user specified a number of folders, create that many folders
+                if numFolders > 0:
+                    # Create the specified number of folders in the Root Folder
+                    for i in range(1, numFolders + 1):
+                        folderName = f"Folder{i}"
+                        os.mkdir(os.path.join(newFileDirectory, folderName))
 
-        # Check if the directory already exists
-        if os.path.exists(newFileDirectory):
-            print("\nThe file structure " + newFileStructureName + " already exists. Please choose a different name.")
-            continue
-        
-        # If the directory does not exist, create it
-        else:
-            # Create the new root file structure
-            os.mkdir(newFileDirectory)
+                # If the user specified zero folders, inform them
+                elif numFolders == 0:
+                    print("\nZero folders were created.")
 
-            # If the user specified a number of folders, create that many folders
-            if numFolders > 0:
-                # Create the specified number of folders in the Root Folder
-                for i in range(1, numFolders + 1):
-                    folderName = f"Folder{i}"
-                    os.mkdir(os.path.join(newFileDirectory, folderName))
+                # Inform the user that the file structure has been created
+                print("\nFile Structure " + newFileStructureName + " has been created successfully!")
+                print("\nLocation: " + newFileDirectory)
 
-            # If the user specified zero folders, inform them
-            elif numFolders == 0:
-                print("\nZero folders will be created.")
-                    
-            # If no specific number is given, create the default blank template folders
-            else:  
-                print("\nNo specific number of folders provided. Creating default blank template folders.")
-                for items in foldersBlankTemplate:
-                    os.mkdir(os.path.join(newFileDirectory, items))
-
-            # Inform the user that the file structure has been created
-            print("\nFile Structure " + newFileStructureName + " has been created successfully!")
-            print("\nLocation: " + newFileDirectory)
-
-            # Exit the loop after successful creation
-            break
+                # Exit the loop after successful creation
+                break

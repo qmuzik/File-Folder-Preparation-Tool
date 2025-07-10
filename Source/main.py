@@ -23,6 +23,9 @@ if __name__ == '__main__':
         # Ask the user if they need to create another file structure
         endOfFileStructureCreationUserResponse = input("\nDo you need to create another file structure (Y or N)?\n")
 
+        # Remove any leading or trailing whitespace
+        endOfFileStructureCreationUserResponse = endOfFileStructureCreationUserResponse.strip()
+
         #  If yes, reset the app to defualt vaules
         if endOfFileStructureCreationUserResponse == 'Y' or endOfFileStructureCreationUserResponse == 'y':
             print("\nResetting the Project File Folder Preparation Tool to default values.\n")
