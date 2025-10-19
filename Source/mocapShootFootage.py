@@ -15,7 +15,7 @@ def mocapShootFootageFolderStructure():
     moveOneMocapShootFootageFilePath = "J:\Mocap\Mocap Shoot Footage\MoveOne"
 
     # Mocap Shoot Footage Folder Names
-    foldersMocapShootFootage = ["Edited", "Misc", "Raw", "Reel"]
+    foldersMocapShootFootage = ["Edited", "Misc", "Raw", "Reel", "Pics"]
 
     # Loop to ensure the user selects a valid Mocap System
     while True:
